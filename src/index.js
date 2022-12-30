@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Blog from './components/Blog'
+import AddBlog from './components/AddBlog'
 import Blogs from './components/Blogs'
 const router = createBrowserRouter([
   {
@@ -15,7 +16,6 @@ const router = createBrowserRouter([
     path:"/blogs/:id",
     element: <Blog />
   },
-  
 ]) 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

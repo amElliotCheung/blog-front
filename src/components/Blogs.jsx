@@ -2,20 +2,16 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axiosInstance from '../context/axios'
 
 const Blogs = () => {
-    axios.defaults.baseURL = 'http://ec2-13-231-114-243.ap-northeast-1.compute.amazonaws.com:8080';
-    // axios.defaults.baseURL = 'http://fucky';
-    // const instance = axios.create({
-    //     baseURL: 'http://ec2-13-231-114-243.ap-northeast-1.compute.amazonaws.com:8080'});
     const [blogs, setBlogs] = useState([])
     useEffect(() => 
     {
         const getBlogs = async () => {
-            const res = await axios.get("/")
-            console.log(res.data.data)
-            setBlogs(res.data.data)
+            const res = await axiosInstance.get("/")
+            console.log(res.data)
+            setBlogs(res.data)
         }
         getBlogs()
     },  [])
@@ -26,9 +22,10 @@ const Blogs = () => {
             {
             blogs.map((b) => 
                 <div key = {b.id}>
-                    <Link to={`/blogs/${b.id}`}>
+                    <h2><Link to={`/blogs/${b.id}`}>
                         {b.title}
-                    </Link>
+                    </Link></h2>
+                    <br />
                     <span>{b.release_date}</span>
                     <p>{b.text}</p>
                     <br />
